@@ -1,0 +1,27 @@
+Log-file of program ./dymosim
+(generated: Wed Apr 05 00:27:56 2017)
+
+dymosim started
+... "dsin.txt" loading (dymosim input file)
+ERROR: Failed to solve non-linear system using Newton solver.
+ It could be that:
+* the starting values are too far from the solution
+ - especially if this occurs at the starting point (see homotopy in the manual) - in rare cases it could occur at events
+ * the equations are too discontinuous for the non-linear solver (likely due to over-using noEvent) - the residual will have knees,
+ * the equations have no solution (note that in some cases the event-logic can cause this) - the residual will be above zero.
+Jacobian has inverse norm 0.0239971 and condition number 1.
+The residual is small, but it is not clear that it is close to a singular point. It could be that there are discontinuities (knees).
+To get more information: Turn on Simulation/Setup/Debug/Nonlinear solver diagnostics/Details
+Solution to systems of equations not found at time = 0
+   Nonlinear system of equations number = 1
+Tag: initialization.nonlinear[1]
+   Infinity-norm of residue = 5.73985E-013
+   Number of calls to nonlinear solver DymNL has reached or exceeded
+   the maximum allowed number of function calls= 400
+   Accumulated number of residue calculations: 400
+   Last values of solution vector:
+x1 = 1.024
+   Last values of residual vector:
+{ 5.73985E-013 }
+ 
+Error: Failed to start model.

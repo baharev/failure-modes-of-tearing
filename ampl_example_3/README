@@ -1,0 +1,37 @@
+
+Here are the steps I followed on my Linux machine to solve Example 3 
+with AMPL. You need to adjust /path/to/ to match your environment.
+
+# Setting up the AMPL solver library
+
+wget --recursive --include-directories=ampl     http://www.netlib.org/ampl
+cd /path/to/www.netlib.org/ampl/solvers/
+chmod +x configurehere 
+./configurehere 
+make
+
+# Compiling and exporting the external C function
+
+gcc -I/path/to/www.netlib.org/ampl/solvers -c -fpic my_func.c 
+gcc -shared -o amplfunc.so my_func.o
+export AMPLFUNC=/path/to/amplfunc.so 
+
+# Solving Example 3
+
+ampl example_3.mod
+
+# Timings
+
+time (gcc -c -fpic my_func.c && gcc -shared -o amplfunc.so my_func.o)
+
+real    0m0.045s
+user    0m0.026s
+sys     0m0.019s
+
+time (export AMPLFUNC=/path/to/amplfunc.so; ampl example_3.mod >/dev/null)
+
+real    0m0.016s
+user    0m0.004s
+sys     0m0.012s
+
+Ipopt version 3.11.9, with linear solver MA27
